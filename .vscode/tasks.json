@@ -18,7 +18,7 @@
 				"-Wsign-conversion",
 				"-Werror",
 				"-Wshadow",
-				//"input.cpp",
+				"commands.cpp",
 				"main.cpp",
 				//"${file}",
 				"-o",

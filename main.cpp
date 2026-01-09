@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 
+#include "commands.h"
+
 int welcome();
 
 int main()
@@ -18,6 +20,10 @@ int main()
 
         if (command == "exit")
             break;
+        else if (command == "add")
+        {
+            Commands::add();
+        }
         else
             std::cout << "Command " << command << " is unknown\n";
     }
@@ -52,7 +58,7 @@ int welcome()
         return 1;
     }
 
-    std::string strInput{};
+    std::string strInput;
     while (std::getline(inf, strInput))
     {
         std::cout << strInput << '\n';
