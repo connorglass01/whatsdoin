@@ -1,4 +1,5 @@
-./whatsdoing.txt
-./*.DSYM
-./commands
-./main
+whatsdoing.txt
+commands
+main
+
+*.dSYM/
