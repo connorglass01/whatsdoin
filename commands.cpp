@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
 
 namespace Commands
 {
@@ -15,12 +16,14 @@ namespace Commands
     }
 
     // Creating, writing and reading a new task
-    int add()
+    int add(std::vector<Task> tasks)
     {
         std::cout << "Task: ";
         Task newTask{};
         newTask.id = generateID();
         std::getline(std::cin, newTask.task);
+
+        tasks.push_back(newTask);
 
         {
             std::ofstream outf { "whatsdoing.txt", std::ios::app };
@@ -30,7 +33,7 @@ namespace Commands
                 return 1;
             }
 
-            outf << newTask.id << "  " << newTask.task << '\n';
+            outf << '[' << newTask.id << ']' << "  " << newTask.task << '\n';
         }
 
         std::system("clear");

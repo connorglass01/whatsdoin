@@ -28,14 +28,13 @@ int main()
             break;
         else if (command == "add")
         {
-            Commands::add();
+            Commands::add(tasks);
         }
         else
             std::cout << "Command " << command << " is unknown\n";
     }
 
     //std::system("clear");
-
     return 0;
 }
 
