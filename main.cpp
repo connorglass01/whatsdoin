@@ -2,18 +2,24 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "commands.h"
+#include "task.h"
 
 int welcome();
 
 int main()
 {
+    // Outputs initial welcome msg
     welcome();
+
+    // Initialises empty vector of tasks
+    std::vector<Task> tasks;
 
     while (true)
     {
-        std::cout << "doin\'> ";
+        std::cout << "\ndoin\'> ";
 
         std::string command{};
         std::getline(std::cin, command);
@@ -35,6 +41,7 @@ int main()
 
 int welcome()
 {
+    std::system("clear");
     {
         // Writing to the "whatsdoing.txt" file
         std::ofstream outf { "whatsdoing.txt"};
@@ -45,7 +52,10 @@ int welcome()
             }    
         
         std::string welcome {
+            "\n"
+            "=============================\n"
             "~~~ Welcome to whatsdoing ~~~\n"
+            "=============================\n"
         };
         outf << welcome;
     }   // outf goes out of scope (equiv. to outf.close())

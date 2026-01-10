@@ -1,4 +1,5 @@
 #include "commands.h"
+#include "task.h"
 
 #include <iostream>
 #include <string>
@@ -6,11 +7,20 @@
 
 namespace Commands
 {
+    // Creates ID for each task
+    int generateID()
+    {
+        static int s_itemID {0};
+        return s_itemID++; //makes copy of s_itemID, increments real s_itemID and returns copy
+    }
+
+    // Creating, writing and reading a new task
     int add()
     {
         std::cout << "Task: ";
-        std::string task;
-        std::getline(std::cin, task);
+        Task newTask{};
+        newTask.id = generateID();
+        std::getline(std::cin, newTask.task);
 
         {
             std::ofstream outf { "whatsdoing.txt", std::ios::app };
@@ -18,8 +28,9 @@ namespace Commands
             {
                 std::cout << "Something went wrong \n";
                 return 1;
-            }    
-            outf << task;
+            }
+
+            outf << newTask.id << "  " << newTask.task << '\n';
         }
 
         std::system("clear");

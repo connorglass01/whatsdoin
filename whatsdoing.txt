@@ -1,2 +1,7 @@
+
+=============================
 ~~~ Welcome to whatsdoing ~~~
-say hi to ash
+=============================
+0  ash
+1  connor
+2  ben
