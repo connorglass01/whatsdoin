@@ -16,42 +16,50 @@ namespace Commands
     }
 
     // Creating, writing and reading a new task
-    int add(std::vector<Task> tasks)
+    int add(std::vector<Task>& tasks)
     {
         std::cout << "Task: ";
         Task newTask{};
         newTask.id = generateID();
         std::getline(std::cin, newTask.task);
-
         tasks.push_back(newTask);
 
+        return 0;
+    }
+
+    int done(std::vector<Task>& tasks)
+    {
+        // If user types done with no tasks to remove
+        if (tasks.empty())
         {
-            std::ofstream outf { "whatsdoing.txt", std::ios::app };
-            if (!outf)
+            return 0;
+        }
+
+        int numTasks { static_cast<int>(tasks.size()) };
+        int taskID;
+
+        while(true)
+        {
+            std::cout << "Task ID [0 - " << numTasks - 1 << "]:\n";
+
+            if ((std::cin >> taskID) && 0<= taskID < numTasks + 1)
             {
-                std::cout << "Something went wrong \n";
-                return 1;
+                std::cin.ignore(1000, '\n');
+                break;
             }
-
-            outf << '[' << newTask.id << ']' << "  " << newTask.task << '\n';
-        }
-
-        std::system("clear");
-
-        // Reading the "whatsdoing.txt" file with the new task
-        std::ifstream inf { "whatsdoing.txt" };
-        if (!inf)
-        {
-            std::cout << "something went wrong reading\n";
-            return 1;
-        }
-
-        std::string strInput;
-        while (std::getline(inf, strInput))
-        {
-            std::cout << strInput << '\n';
+            else
+            {
+                std::cout << "Invaild ID input. Please try again.\n";
+                std::cin.clear();
+            }
+            
+            std::cin.ignore(1000, '\n');
         }
         
+        std::size_t ID = static_cast<std::size_t>(taskID);
+        
+        tasks[ID].done = true; 
+
         return 0;
     }
 }

@@ -5,7 +5,8 @@
 
 namespace Commands
 {
-    int add(std::vector<Task> tasks);
+    int add(std::vector<Task>& tasks);
+    int done(std::vector<Task>& tasks);
 }
 
 
