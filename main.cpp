@@ -38,22 +38,22 @@ int main()
         {
             Commands::done(tasks);
         }
-        else if (command == "delete")
+        else if (command == "remove")
         {
-            break;
+            Commands::remove(tasks);
         }
         else if ( command == "help")
         {
-            break;
+            std::system("clear");
+            Commands::help();
+            continue;
         }
         else
         {
-            std::cout << "Command " << command << " is unknown\n";
+            std::cout << "Command " << command << " not found\n";
             continue;
         }
         
-        //welcome();
-        //std::cout << "Update about to be called\n";
         updateList(tasks);
     }
     
@@ -62,7 +62,6 @@ int main()
 
 int welcome()
 {
-    //std::system("clear");
     {
         // Writing to the "whatsdoing.txt" file
         std::ofstream outf { "whatsdoing.txt"};
@@ -73,9 +72,11 @@ int welcome()
             }    
         
         std::string welcome {
-            "=============================\n"
-            "~~~ Welcome to whatsdoin' ~~~\n"
-            "=============================\n"
+            "---------------------------------------\n"
+            "~~~      Welcome to whatsdoin'      ~~~\n"
+            "---------------------------------------\n"
+            "\n"
+            "Type \033[1mhelp\033[0m + |return| for guidance\n"
         };
         outf << welcome;
     }   // outf goes out of scope (equiv. to outf.close())
@@ -101,18 +102,6 @@ int welcome()
 
 int updateList(std::vector<Task> tasks)
 {   
-    //std::cout << "update called\n";
-    //std::cout << "Tasks has size " << tasks.size() << '\n';
-    //for (std::size_t i{}; i < tasks.size(); ++i)
-    //{
-    //    std::cout << tasks[i].id << tasks[i].task << '\n';
-    //}
-    // Update and write to terminal
-        //std::system("clear");            // Wipe the "old" note
-        //welcome();                       // Write welcome msg for "new" note
-
-        // Write each task to "new" note
-        // Append tasks to the list
     std::system("clear");
 
     {
@@ -125,10 +114,9 @@ int updateList(std::vector<Task> tasks)
             }    
         
         std::string welcome {
-            "\n"
-            "=============================\n"
-            "~~~ Welcome to whatsdoing ~~~\n"
-            "=============================\n"
+        "---------------------------------------\n"
+        "~~~        whatsdoin' today:        ~~~\n"
+        "---------------------------------------\n"
         };
         outf << welcome;
     }   // outf goes out of scope (equiv. to outf.close())
