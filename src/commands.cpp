@@ -117,7 +117,7 @@ namespace Commands
             "\n"
             "\033[1madd\033[0m + |return|    - add a task\n"
             "\033[1mdone\033[0m + |return|   - toggle task completion\n"
-            "\033[1mremove\033[0m + |return| - remove a task"
+            "\033[1mremove\033[0m + |return| - remove a task\n"
             "\033[1mexit\033[0m + |return|   - exit application"
         };
         outf << helpMsg;

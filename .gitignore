@@ -1,5 +1,7 @@
-whatsdoing.txt
-commands
-main
+src/whatsdoing.txt
+src/commands
+src/main
+src/*.dSYM/
 
-*.dSYM/
+.vscode/
+build/
